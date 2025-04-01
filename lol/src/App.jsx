@@ -4,7 +4,6 @@ import { saveAs } from 'file-saver';
 import { pdf } from '@react-pdf/renderer';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 
-// Styles for PDF generation
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -45,7 +44,6 @@ const Analyser = () => {
   const [chatResponse, setChatResponse] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
 
-  // Replace this with your actual Gemini API key or move to env later
   const GEMINI_API_KEY = 'AIzaSyA4j3GjYQ1l5X7QZ3v3n3n3n3n3n3n3n3n3n';
 
   const analyseApiKey = async () => {
@@ -53,8 +51,7 @@ const Analyser = () => {
 
     setLoading(true);
     try {
-      // Simulate analysis (in a real app, you would call Gemini API)
-      const isSafe = Math.random() > 0.3; // 70% chance of being safe for demo
+      const isSafe = Math.random() > 0.3;
       const riskFactors = isSafe 
         ? ['No known vulnerabilities detected', 'Proper key format', 'No exposure in public repos']
         : ['Potential exposure in recent breaches', 'Weak key format', 'Suspected key rotation needed'];
@@ -71,7 +68,6 @@ const Analyser = () => {
         'Never commit API keys to version control'
       ];
 
-      // Simulate Gemini API response
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       setAnalysisResult({
@@ -104,14 +100,12 @@ const Analyser = () => {
 
     setChatLoading(true);
     try {
-      // Simulate Gemini API response to a question
       const responses = [
         `Based on the analysis, ${analysisResult.isSafe ? 'this API key appears safe' : 'this API key shows signs of vulnerability'}. ${question.includes('rotation') ? 'Key rotation is recommended every 90 days as a security best practice.' : ''}`,
         `The security assessment indicates ${analysisResult.isSafe ? 'no immediate concerns' : 'several risk factors'}. Always monitor API key usage for anomalies.`,
         `${analysisResult.isSafe ? 'No action required' : 'Immediate rotation recommended'}. ${question.includes('store') ? 'API keys should be stored in secure environment variables or dedicated secret management systems.' : ''}`
       ];
 
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       setChatResponse(responses[Math.floor(Math.random() * responses.length)]);
